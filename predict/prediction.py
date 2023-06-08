@@ -1,9 +1,9 @@
-def predict(preprocessed_data):
-    import pickle
-    import pandas as pd
-    from preprocessing.cleaning_data import preprocess
+import pickle
+# import sklearn
+from preprocessing.cleaning_data import preprocess
 
-    # All the code to predict a price
+def predict(preprocessed_data):
+   
     with open("model/model.pkl", "rb") as file:
         pickle_model = pickle.load(file)
 

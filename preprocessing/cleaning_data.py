@@ -1,9 +1,5 @@
 import pandas as pd
-from datetime import date
-import numpy as np
-from urllib.parse import unquote
-from fastapi.responses import JSONResponse
-from fastapi import FastAPI, Request, HTTPException, status, APIRouter
+from fastapi import HTTPException
 
 
 # If required not fulfilled, return error

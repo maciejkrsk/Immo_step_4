@@ -1,16 +1,14 @@
 from preprocessing.cleaning_data import preprocess
 from predict.prediction import *
-from fastapi import FastAPI, Request, HTTPException, status, APIRouter
+from fastapi import FastAPI, Request, HTTPException, APIRouter
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 from http import HTTPStatus
-import pickle
+
 
 app = FastAPI()
 router = APIRouter()
-with open("model/model.pkl", "rb") as file:
-    pickle_model = pickle.load(file)
-# result = loaded_model.score(X_test, Y_test)
+
 
 
 @app.exception_handler(HTTPException)
