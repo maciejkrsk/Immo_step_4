@@ -10,15 +10,14 @@ app = FastAPI()
 router = APIRouter()
 
 
-
 @app.exception_handler(HTTPException)
 def http_exception_handler(request: Request, exc: HTTPException):
     return JSONResponse(status_code=exc.status_code, content={"error": exc.detail})
 
 
 class Data(BaseModel):
-    area: int  # Living area
-    property_type: str  # Subtype
+    area: int  # Living area -----need
+    property_type: str  # Subtype ----- need
     rooms_number: int | None = None  # Bedrooms
     zip_code: int  # Postcode
     land_area: int | None = None  # Dont have
@@ -27,12 +26,17 @@ class Data(BaseModel):
     equipped_kitchen: bool  # Kitchen type
     full_address: str | None = None  # Address
     swimming_pool: bool | None = None  # Swimming pool
-    furnished: bool | None = None  # Furnished
+    furnished: bool  # Furnished ------NEEED
     open_fire: bool | None = None  # How many fireplaces?
     terrace: bool | None = None  # Terrace
     terrace_area: int | None = None  # Terrace area
     facades_number: int | None = None  # Number of frontages
     building_state: str | None = None  # Building condition
+
+
+# for apartments, they start at 30 (or 25), houses at 15 so there is a weird spot, Others at 58
+#  "Furnished", NEED TO UPDATE
+# "Kitchen type",
 
 
 @app.get("/")
@@ -51,7 +55,4 @@ def prediction():
     return predict_no_arguments()
 
 
-# to run uvicorn immo_eliza_deploy:app --reload
-
-
-
+# to run uvicorn app:app --reload
