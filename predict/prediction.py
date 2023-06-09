@@ -1,7 +1,5 @@
-import pickle
-
-# import sklearn
 from preprocessing.cleaning_data import preprocess
+import pickle
 
 
 def predict(preprocessed_data):
@@ -16,6 +14,4 @@ def predict(preprocessed_data):
 
 
 def predict_no_arguments():
-    return (
-        "To predict a price, it is necessary to provide house properties in json format"
-    )
+    return "To predict a price, it is necessary to provide the property_type : str, furnished : bool, equipped_kitchen : bool and area : int"

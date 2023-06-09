@@ -1,5 +1,4 @@
-from preprocessing.cleaning_data import preprocess
-from predict.prediction import *
+from predict.prediction import predict, predict_no_arguments
 from fastapi import FastAPI, Request, HTTPException, APIRouter
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
@@ -16,27 +15,22 @@ def http_exception_handler(request: Request, exc: HTTPException):
 
 
 class Data(BaseModel):
-    area: int  # Living area -----need
-    property_type: str  # Subtype ----- need
-    rooms_number: int | None = None  # Bedrooms
-    zip_code: int  # Postcode
-    land_area: int | None = None  # Dont have
-    garden: bool | None = None  # Garden
-    garden_area: int | None = None  # Garden surface
-    equipped_kitchen: bool  # Kitchen type
-    full_address: str | None = None  # Address
-    swimming_pool: bool | None = None  # Swimming pool
-    furnished: bool  # Furnished ------NEEED
-    open_fire: bool | None = None  # How many fireplaces?
-    terrace: bool | None = None  # Terrace
-    terrace_area: int | None = None  # Terrace area
-    facades_number: int | None = None  # Number of frontages
-    building_state: str | None = None  # Building condition
-
-
-# for apartments, they start at 30 (or 25), houses at 15 so there is a weird spot, Others at 58
-#  "Furnished", NEED TO UPDATE
-# "Kitchen type",
+    area: int
+    property_type: str
+    rooms_number: int | None = None
+    zip_code: int
+    land_area: int | None = None
+    garden: bool | None = None
+    garden_area: int | None = None
+    equipped_kitchen: bool
+    full_address: str | None = None
+    swimming_pool: bool | None = None
+    furnished: bool
+    open_fire: bool | None = None
+    terrace: bool | None = None
+    terrace_area: int | None = None
+    facades_number: int | None = None
+    building_state: str | None = None
 
 
 @app.get("/")
@@ -53,6 +47,3 @@ def prediction(properties_data: Data):
 @app.get("/predict")
 def prediction():
     return predict_no_arguments()
-
-
-# to run uvicorn app:app --reload
